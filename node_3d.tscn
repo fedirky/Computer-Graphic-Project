@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://brb0r8nf03apk"]
+
+[ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://models/sophia/sophia_skin.tscn" id="1_1ifwf"]
+[ext_resource type="Script" path="res://xr_camera_3d.gd" id="2_mhvjn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tjhcr"]
+size = Vector3(100, 5, 100)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Sophia" parent="." instance=ExtResource("1_1ifwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.188957, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Sophia"]
+transform = Transform3D(-1, -1.77636e-15, -8.74228e-08, -3.22378e-08, 0.929526, 0.368757, 8.12617e-08, 0.368757, -0.929526, 0, 2.48413, -3.02935)
+script = ExtResource("2_mhvjn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_tjhcr")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.708697, 0.705513, 0, -0.705513, 0.708697, -0.713105, 4.67506, 4.63008)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129673, -0.50372, -0.205683)
+size = Vector3(11.3632, 1, 9.68848)

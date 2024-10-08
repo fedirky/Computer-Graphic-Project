@@ -1,17 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://brb0r8nf03apk"]
+[gd_scene load_steps=7 format=3 uid="uid://brb0r8nf03apk"]
 
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://models/sophia/sophia_skin.tscn" id="1_1ifwf"]
 [ext_resource type="Script" path="res://xr_camera_3d.gd" id="2_mhvjn"]
+[ext_resource type="Script" path="res://label.gd" id="3_ctyp7"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tjhcr"]
-size = Vector3(100, 5, 100)
+[sub_resource type="BoxMesh" id="BoxMesh_rdhy8"]
+size = Vector3(40, 1, 40)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2e83d"]
+data = PackedVector3Array(-20, 0.5, 20, 20, 0.5, 20, -20, -0.5, 20, 20, 0.5, 20, 20, -0.5, 20, -20, -0.5, 20, 20, 0.5, -20, -20, 0.5, -20, 20, -0.5, -20, -20, 0.5, -20, -20, -0.5, -20, 20, -0.5, -20, 20, 0.5, 20, 20, 0.5, -20, 20, -0.5, 20, 20, 0.5, -20, 20, -0.5, -20, 20, -0.5, 20, -20, 0.5, -20, -20, 0.5, 20, -20, -0.5, -20, -20, 0.5, 20, -20, -0.5, 20, -20, -0.5, -20, 20, 0.5, 20, -20, 0.5, 20, 20, 0.5, -20, -20, 0.5, 20, -20, 0.5, -20, 20, 0.5, -20, -20, -0.5, 20, 20, -0.5, 20, -20, -0.5, -20, 20, -0.5, 20, 20, -0.5, -20, -20, -0.5, -20)
 
 [sub_resource type="Environment" id="Environment_i5lbe"]
 
 [node name="Node3D" type="Node3D"]
 
 [node name="Sophia" parent="." instance=ExtResource("1_1ifwf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.188957, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Sophia"]
 transform = Transform3D(-1, -1.77636e-15, -8.74228e-08, -3.22378e-08, 0.929526, 0.368757, 8.12617e-08, 0.368757, -0.929526, 0, 2.48413, -3.02935)
@@ -20,17 +23,25 @@ script = ExtResource("2_mhvjn")
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98911, 0)
+mesh = SubResource("BoxMesh_rdhy8")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_tjhcr")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98911, 0)
+shape = SubResource("ConcavePolygonShape3D_2e83d")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_i5lbe")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 0.708697, 0.705513, 0, -0.705513, 0.708697, -0.713105, 4.67506, 4.63008)
+transform = Transform3D(1, 0, 0, 0, 0.708697, 0.705513, 0, -0.705513, 0.708697, -0.713105, 10.5797, 6.94945)
+light_color = Color(0.996493, 0.969161, 0.871526, 1)
+shadow_enabled = true
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129673, -0.50372, -0.205683)
-size = Vector3(11.3632, 1, 9.68848)
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("3_ctyp7")

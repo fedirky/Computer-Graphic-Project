@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://de6tx8g4cagxd"]
+
+[ext_resource type="Script" path="res://addons/dreadpon.spatial_gardener/greenhouse/greenhouse.gd" id="1_a86cg"]
+
+[resource]
+resource_name = "Greenhouse"
+script = ExtResource("1_a86cg")
+plant_types/greenhouse_plant_states = []
+metadata/class = "Greenhouse"

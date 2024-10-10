@@ -1,0 +1,49 @@
+[gd_scene load_steps=16 format=3 uid="uid://dpnc17gh882yo"]
+
+[ext_resource type="PackedScene" uid="uid://q8j7w8x4jgig" path="res://terrain/Nature 3d/Bush_Common.gltf" id="1_rro5d"]
+[ext_resource type="PackedScene" uid="uid://ikjpvhm4w3jm" path="res://terrain/Nature 3d/Bush_Common_Flowers.gltf" id="2_0qsfn"]
+[ext_resource type="PackedScene" uid="uid://bt2vr1gw6w7k0" path="res://terrain/Nature 3d/Clover_1.gltf" id="3_2ro60"]
+[ext_resource type="PackedScene" uid="uid://77wsqho3xuth" path="res://terrain/Nature 3d/Clover_2.gltf" id="4_rlna2"]
+[ext_resource type="PackedScene" uid="uid://cbjosrnsdtnv2" path="res://terrain/Nature 3d/CommonTree_1.gltf" id="5_bxq35"]
+[ext_resource type="PackedScene" uid="uid://d30k4xq1ksoij" path="res://terrain/Nature 3d/CommonTree_2.gltf" id="6_8w42b"]
+[ext_resource type="PackedScene" uid="uid://brxgcq810rsed" path="res://terrain/Nature 3d/CommonTree_3.gltf" id="7_c86og"]
+[ext_resource type="PackedScene" uid="uid://d3onsmsdtnup8" path="res://terrain/Nature 3d/CommonTree_4.gltf" id="8_2fnk6"]
+[ext_resource type="PackedScene" uid="uid://brfd528igd838" path="res://terrain/Nature 3d/CommonTree_5.gltf" id="9_0ndye"]
+[ext_resource type="PackedScene" uid="uid://cwgjne6b6vinu" path="res://terrain/Nature 3d/DeadTree_1.gltf" id="10_vj6u2"]
+[ext_resource type="PackedScene" uid="uid://bp14ulcnagap7" path="res://terrain/Nature 3d/DeadTree_2.gltf" id="11_x16o7"]
+[ext_resource type="PackedScene" uid="uid://ckjbaki0a1gk4" path="res://terrain/Nature 3d/DeadTree_3.gltf" id="12_nb5ix"]
+[ext_resource type="PackedScene" uid="uid://bnrwuobckkmr0" path="res://terrain/Nature 3d/DeadTree_4.gltf" id="13_6f8aw"]
+[ext_resource type="PackedScene" uid="uid://dvycayvxp2mrc" path="res://terrain/Nature 3d/DeadTree_5.gltf" id="14_flu1u"]
+[ext_resource type="PackedScene" uid="uid://dxnim8hjeas1x" path="res://terrain/Nature 3d/Fern_1.gltf" id="15_sr1mv"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Bush_Common2" parent="." instance=ExtResource("1_rro5d")]
+
+[node name="Bush_Common_Flowers2" parent="." instance=ExtResource("2_0qsfn")]
+
+[node name="Clover_12" parent="." instance=ExtResource("3_2ro60")]
+
+[node name="Clover_22" parent="." instance=ExtResource("4_rlna2")]
+
+[node name="CommonTree_12" parent="." instance=ExtResource("5_bxq35")]
+
+[node name="CommonTree_22" parent="." instance=ExtResource("6_8w42b")]
+
+[node name="CommonTree_32" parent="." instance=ExtResource("7_c86og")]
+
+[node name="CommonTree_42" parent="." instance=ExtResource("8_2fnk6")]
+
+[node name="CommonTree_52" parent="." instance=ExtResource("9_0ndye")]
+
+[node name="DeadTree_12" parent="." instance=ExtResource("10_vj6u2")]
+
+[node name="DeadTree_22" parent="." instance=ExtResource("11_x16o7")]
+
+[node name="DeadTree_32" parent="." instance=ExtResource("12_nb5ix")]
+
+[node name="DeadTree_42" parent="." instance=ExtResource("13_6f8aw")]
+
+[node name="DeadTree_52" parent="." instance=ExtResource("14_flu1u")]
+
+[node name="Fern_12" parent="." instance=ExtResource("15_sr1mv")]

@@ -78,7 +78,7 @@ config/icon="res://icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dreadpon.spatial_gardener/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/smoothing/plugin.cfg")
+enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg", "res://addons/smoothing/plugin.cfg")
 
 [input]
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://brb0r8nf03apk"]
+[gd_scene load_steps=28 format=3 uid="uid://brb0r8nf03apk"]
 
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://models/sophia/sophia_skin.tscn" id="1_1ifwf"]
 [ext_resource type="MeshLibrary" uid="uid://c1y856q8vovcy" path="res://terrain/tilemap_nature.tres" id="2_gywnq"]
 [ext_resource type="Script" path="res://xr_camera_3d.gd" id="2_mhvjn"]
 [ext_resource type="Script" path="res://label.gd" id="3_ctyp7"]
+[ext_resource type="Shader" path="res://terrain/water.gdshader" id="3_vrg6d"]
 [ext_resource type="MeshLibrary" uid="uid://duwx84afa2ddw" path="res://terrain/tilemap.tres" id="4_b7wua"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="5_gb6wc"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="6_ualhd"]
@@ -14,6 +15,22 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="12_etv02"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="13_gur4n"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="15_1cmcj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_837pn"]
+render_priority = 0
+shader = ExtResource("3_vrg6d")
+shader_parameter/WATER_COL = Vector3(0.04, 0.38, 0.88)
+shader_parameter/WATER2_COL = Vector3(0.04, 0.35, 0.78)
+shader_parameter/FOAM_COL = Vector3(0.8125, 0.9609, 0.9648)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(1300, 1300)
+shader_parameter/height = 2.0
+shader_parameter/wave_size = Vector2(2, 2)
+shader_parameter/wave_speed = 1.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2orff"]
+material = SubResource("ShaderMaterial_837pn")
+size = Vector2(7000, 7000)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_8s7wi"]
 noise_type = 5
@@ -26,6 +43,7 @@ noise = SubResource("FastNoiseLite_8s7wi")
 sky_top_color = Color(0.1407, 0.459028, 0.753334, 1)
 sky_horizon_color = Color(0.370906, 0.748108, 0.908343, 1)
 sky_cover = SubResource("NoiseTexture2D_70iq0")
+ground_horizon_color = Color(0.8, 0.976471, 1, 1)
 
 [sub_resource type="Sky" id="Sky_bfqda"]
 sky_material = SubResource("ProceduralSkyMaterial_xtrsb")
@@ -34,8 +52,12 @@ sky_material = SubResource("ProceduralSkyMaterial_xtrsb")
 background_mode = 2
 sky = SubResource("Sky_bfqda")
 reflected_light_source = 2
-fog_light_color = Color(0.141176, 0.458824, 0.752941, 1)
-volumetric_fog_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.801811, 0.976796, 0.999678, 1)
+fog_density = 1.0
+fog_height_density = 10.0
+fog_depth_curve = 7.46423
 volumetric_fog_density = 0.06
 volumetric_fog_emission = Color(0.572243, 0.880196, 0.935879, 1)
 volumetric_fog_detail_spread = 6.0
@@ -102,6 +124,10 @@ data = {
 "cells": PackedInt32Array(65550, 5, 1441792, 65547, 65529, 1048576, 131068, 65534, 1441792, 65538, 9, 1048577, 65536, 65528, 1441793, 65555, 65535, 655361, 65555, 11, 1048577, 65541, 65529, 1048579, 65552, 65530, 1441795, 65549, 65534, 1048579, 65544, 5, 1441795, 131070, 4, 1048579, 65543, 12, 1441795, 65557, 5, 655363, 131070, 65530, 1048579, 65553, 6, 1441794, 65538, 4, 1048578, 65544, 65532, 1441794, 65549, 10, 1048578, 65536, 11, 1048580, 65542, 65527, 655364, 65553, 65528, 1048580, 131069, 65528, 5, 65546, 9, 1441797, 65556, 3, 1048581, 65551, 65532, 1048582, 65541, 11, 1441798, 65544, 2, 1441799, 65536, 65535, 1441800, 131067, 3, 1441802, 65550, 1, 1441806, 131069, 1, 1441806, 65552, 9, 1048584, 65545, 65534, 13)
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="Whater" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.079813, -4.25063, 0.0551186)
+mesh = SubResource("PlaneMesh_2orff")
 
 [node name="Sophia" parent="." instance=ExtResource("1_1ifwf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.30987, 1.52147, 0)

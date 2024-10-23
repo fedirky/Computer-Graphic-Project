@@ -7,10 +7,13 @@ extends CharacterBody3D
 var run_tilt = 0.0: set = _set_run_tilt
 var target_rotation := Transform3D()
 
+@export var missile_scene: PackedScene
 @export var blink = true: set = set_blink
 @onready var blink_timer = $BlinkTimer
 @onready var closed_eyes_timer = $ClosedEyesTimer
 @onready var eye_mat = $sophia/rig/Skeleton3D/Sophia.get("surface_material_override/2")
+
+
 
 const SPEED = 5.0
 const LERP_AFK_SPEED = 50.0
@@ -29,6 +32,28 @@ func _ready():
 		blink_timer.start(randf_range(1.0, 4.0))
 	)
 	
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:  # Перевірка, чи є подія натисканням кнопки миші
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:  # Ліва кнопка миші натиснута
+			spawn_missle()
+	
+func spawn_missle():
+	if missile_scene:
+		var missile_instance = missile_scene.instantiate()
+		missile_instance.position = $Marker3D.global_position
+		
+		# Get the camera's forward direction
+		var camera_direction = $Camera3D.global_transform.basis.z.normalized()
+		camera_direction.y = 0  # Ignore the vertical component
+		camera_direction = camera_direction.normalized()
+
+		# Set the missile's direction
+		missile_instance.direction = -camera_direction
+
+		get_parent().add_child(missile_instance)
+
+	
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += 2 * get_gravity() * delta

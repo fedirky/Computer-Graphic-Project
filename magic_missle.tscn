@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlh54blaksoa7"]
+
+[ext_resource type="Script" path="res://magic_missle.gd" id="1_pbx3a"]
+[ext_resource type="Script" path="res://addons/smoothing/smoothing.gd" id="2_xmusj"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_bdd23"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_33rmq"]
+radius = 0.1
+
+[node name="MagicMissle" type="CharacterBody3D"]
+collision_layer = 0
+script = ExtResource("1_pbx3a")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="Smoothing" type="Node3D" parent="Area3D"]
+script = ExtResource("2_xmusj")
+target = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D/Smoothing"]
+mesh = SubResource("SphereMesh_bdd23")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_33rmq")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

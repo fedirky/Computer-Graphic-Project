@@ -52,7 +52,6 @@ sky_material = SubResource("ProceduralSkyMaterial_xtrsb")
 background_mode = 2
 sky = SubResource("Sky_bfqda")
 reflected_light_source = 2
-fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.231373, 0.607843, 1, 1)
 fog_density = 1.0
@@ -72,6 +71,10 @@ collision_mask = 3
 [node name="Camera3D" type="Camera3D" parent="mage"]
 transform = Transform3D(-1, -4.79616e-14, -8.74228e-08, -3.22378e-08, 0.929526, 0.368757, 8.12617e-08, 0.368757, -0.929526, 0, 3.99934, -2.06137)
 script = ExtResource("2_mhvjn")
+
+[node name="RayCast3D" type="RayCast3D" parent="mage/Camera3D"]
+target_position = Vector3(1, 1, 0)
+collision_mask = 7
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("4_b7wua")

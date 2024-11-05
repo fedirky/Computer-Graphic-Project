@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dlh54blaksoa7"]
+[gd_scene load_steps=16 format=3 uid="uid://dlh54blaksoa7"]
 
 [ext_resource type="Script" path="res://magic_missle.gd" id="1_pbx3a"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing.gd" id="2_xmusj"]
@@ -6,7 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://c3dnnkbnlrq2i" path="res://terrain/magic/HoleNoise.png" id="4_kmpv8"]
 [ext_resource type="Texture2D" uid="uid://ce0lx870qyoid" path="res://terrain/magic/FireMask.png" id="5_q1t36"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ombj1"]
+albedo_color = Color(1, 0.0372005, 0.0451465, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_bdd23"]
+material = SubResource("StandardMaterial3D_ombj1")
 radius = 0.1
 height = 0.2
 

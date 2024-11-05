@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://dwfb4wj1aui4u"]
+[gd_scene load_steps=60 format=4 uid="uid://dwfb4wj1aui4u"]
 
 [ext_resource type="PackedScene" uid="uid://bliufdc6ymrxl" path="res://terrain/Grid/detail_desert.fbx" id="26_o62he"]
 [ext_resource type="PackedScene" uid="uid://bi2s2fbwtqb26" path="res://terrain/Grid/detail_forest.fbx" id="27_u6cpl"]
@@ -170,8 +170,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_1rli3")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_csywg"]
-points = PackedVector3Array(2.7067, 0, 2.79368, -2.94667, 0.0635653, -2.94609, 2.95216, 1.09524, -2.95158, -2.95156, 1.09524, 2.95158, 2.95216, 1.09524, 2.95158, 2.94667, 0.0635653, -2.94609, -2.94667, 0.0635653, 2.94609, -2.95156, 1.09524, -2.95158, -2.79422, -1.11022e-16, -2.70617, 2.94667, 0.0635653, 2.94609, 2.7067, 0, -2.79368, -2.79422, -1.11022e-16, 2.70617, 2.79422, -1.11022e-16, 2.70617, 2.79422, -1.11022e-16, -2.70617, -2.70615, 0, -2.79368, -2.70615, 0, 2.79368)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sjsvi"]
+points = PackedVector3Array(-2.86962, 0.130677, -3, -2.86962, 0.0653876, -2.98297, -2.93481, 0.130677, -2.98297, -2.86962, 0.869225, -3, 2.86903, 0.130677, -3, -2.86962, 0.0174236, -2.93481, -2.93187, 0.0681284, -2.96594, 2.86903, 0.0653876, -2.98297, -2.98297, 0.130677, -2.93481, -2.93481, 0.869225, -2.98297, -2.86962, 0.934514, -2.98297, 2.86903, 0.869225, -3, 2.93422, 0.130677, -2.98297, -2.86962, 0, -2.86962, -2.93481, 0.0174236, -2.86962, -2.93187, 0.0343579, -2.93187, 2.86903, 0.0174236, -2.93481, -2.96594, 0.0681284, -2.93187, 2.93128, 0.0681284, -2.96594, -3, 0.130677, -2.86962, -2.98297, 0.869225, -2.93481, -2.98297, 0.0653876, -2.86962, -2.93187, 0.931774, -2.96594, -2.86962, 0.982478, -2.93481, 2.86903, 0.934514, -2.98297, 2.93422, 0.869225, -2.98297, 2.98238, 0.130677, -2.93481, -2.86962, 0, 2.86903, 2.86903, 0, -2.86962, -2.93481, 0.0174236, 2.86903, 2.93128, 0.0343579, -2.93187, 2.93422, 0.0174236, -2.86962, 2.96535, 0.0681284, -2.93187, -3, 0.130677, 2.86903, -3, 0.869225, -2.86962, -2.98297, 0.934514, -2.86962, -2.96594, 0.931774, -2.93187, -2.98297, 0.0653876, 2.86903, -2.93187, 0.965544, -2.93187, -2.93481, 0.982478, -2.86962, -2.86962, 1, -2.86962, 2.86903, 0.982478, -2.93481, 2.93128, 0.931774, -2.96594, 2.98238, 0.869225, -2.93481, 3, 0.130677, -2.86962, 2.98238, 0.0653876, -2.86962, -2.86962, 0.0174236, 2.93422, 2.86903, 0, 2.86903, -2.96594, 0.0681284, 2.93128, -2.93187, 0.0343579, 2.93128, 2.93422, 0.0174236, 2.86903, -3, 0.869225, 2.86903, -2.98297, 0.130677, 2.93422, -2.98297, 0.934514, 2.86903, -2.93481, 0.982478, 2.86903, -2.86962, 1, 2.86903, 2.86903, 1, -2.86962, 2.93422, 0.982478, -2.86962, 2.93128, 0.965544, -2.93187, 2.96535, 0.931774, -2.93187, 2.98238, 0.934514, -2.86962, 3, 0.869225, -2.86962, 3, 0.130677, 2.86903, 2.98238, 0.0653876, 2.86903, -2.86962, 0.0653876, 2.98238, -2.93187, 0.0681284, 2.96535, 2.86903, 0.0174236, 2.93422, 2.96535, 0.0681284, 2.93128, 2.93128, 0.0343579, 2.93128, -2.98297, 0.869225, 2.93422, -2.93481, 0.130677, 2.98238, -2.96594, 0.931774, 2.93128, -2.93187, 0.965544, 2.93128, -2.86962, 0.982478, 2.93422, 2.86903, 1, 2.86903, 2.93422, 0.982478, 2.86903, 2.98238, 0.934514, 2.86903, 3, 0.869225, 2.86903, 2.98238, 0.130677, 2.93422, -2.86962, 0.130677, 3, 2.86903, 0.0653876, 2.98238, 2.93128, 0.0681284, 2.96535, -2.93481, 0.869225, 2.98238, -2.93187, 0.931774, 2.96535, -2.86962, 0.934514, 2.98238, 2.86903, 0.982478, 2.93422, 2.96535, 0.931774, 2.93128, 2.93128, 0.965544, 2.93128, 2.98238, 0.869225, 2.93422, 2.93422, 0.130677, 2.98238, -2.86962, 0.869225, 3, 2.86903, 0.130677, 3, 2.86903, 0.934514, 2.98238, 2.93128, 0.931774, 2.96535, 2.93422, 0.869225, 2.98238, 2.86903, 0.869225, 3)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vrq63"]
+points = PackedVector3Array(-2.86962, 0.130677, -3, -2.86962, 0.0653876, -2.98297, -2.93481, 0.130677, -2.98297, -2.86962, 0.869225, -3, 2.86903, 0.130677, -3, -2.86962, 0.0174236, -2.93481, -2.93187, 0.0681284, -2.96594, 2.86903, 0.0653876, -2.98297, -2.98297, 0.130677, -2.93481, -2.93481, 0.869225, -2.98297, -2.86962, 0.934514, -2.98297, 2.86903, 0.869225, -3, 2.93422, 0.130677, -2.98297, -2.86962, 0, -2.86962, -2.93481, 0.0174236, -2.86962, -2.93187, 0.0343579, -2.93187, 2.86903, 0.0174236, -2.93481, -2.96594, 0.0681284, -2.93187, 2.93128, 0.0681284, -2.96594, -3, 0.130677, -2.86962, -2.98297, 0.869225, -2.93481, -2.98297, 0.0653876, -2.86962, -2.93187, 0.931774, -2.96594, -2.86962, 0.982478, -2.93481, 2.86903, 0.934514, -2.98297, 2.93422, 0.869225, -2.98297, 2.98238, 0.130677, -2.93481, -2.86962, 0, 2.86903, 2.86903, 0, -2.86962, -2.93481, 0.0174236, 2.86903, 2.93128, 0.0343579, -2.93187, 2.93422, 0.0174236, -2.86962, 2.96535, 0.0681284, -2.93187, -3, 0.130677, 2.86903, -3, 0.869225, -2.86962, -2.98297, 0.934514, -2.86962, -2.96594, 0.931774, -2.93187, -2.98297, 0.0653876, 2.86903, -2.93187, 0.965544, -2.93187, -2.93481, 0.982478, -2.86962, -2.86962, 1, -2.86962, 2.86903, 0.982478, -2.93481, 2.93128, 0.931774, -2.96594, 2.98238, 0.869225, -2.93481, 3, 0.130677, -2.86962, 2.98238, 0.0653876, -2.86962, -2.86962, 0.0174236, 2.93422, 2.86903, 0, 2.86903, -2.96594, 0.0681284, 2.93128, -2.93187, 0.0343579, 2.93128, 2.93422, 0.0174236, 2.86903, -3, 0.869225, 2.86903, -2.98297, 0.130677, 2.93422, -2.98297, 0.934514, 2.86903, -2.93481, 0.982478, 2.86903, -2.86962, 1, 2.86903, 2.86903, 1, -2.86962, 2.93422, 0.982478, -2.86962, 2.93128, 0.965544, -2.93187, 2.96535, 0.931774, -2.93187, 2.98238, 0.934514, -2.86962, 3, 0.869225, -2.86962, 3, 0.130677, 2.86903, 2.98238, 0.0653876, 2.86903, -2.86962, 0.0653876, 2.98238, -2.93187, 0.0681284, 2.96535, 2.86903, 0.0174236, 2.93422, 2.96535, 0.0681284, 2.93128, 2.93128, 0.0343579, 2.93128, -2.98297, 0.869225, 2.93422, -2.93481, 0.130677, 2.98238, -2.96594, 0.931774, 2.93128, -2.93187, 0.965544, 2.93128, -2.86962, 0.982478, 2.93422, 2.86903, 1, 2.86903, 2.93422, 0.982478, 2.86903, 2.98238, 0.934514, 2.86903, 3, 0.869225, 2.86903, 2.98238, 0.130677, 2.93422, -2.86962, 0.130677, 3, 2.86903, 0.0653876, 2.98238, 2.93128, 0.0681284, 2.96535, -2.93481, 0.869225, 2.98238, -2.93187, 0.931774, 2.96535, -2.86962, 0.934514, 2.98238, 2.86903, 0.982478, 2.93422, 2.96535, 0.931774, 2.93128, 2.93128, 0.965544, 2.93128, 2.98238, 0.869225, 2.93422, 2.93422, 0.130677, 2.98238, -2.86962, 0.869225, 3, 2.86903, 0.130677, 3, 2.86903, 0.934514, 2.98238, 2.93128, 0.931774, 2.96535, 2.93422, 0.869225, 2.98238, 2.86903, 0.869225, 3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5symr"]
 resource_name = "Green"
@@ -638,28 +641,40 @@ points = PackedVector3Array(0.399623, 0.868833, 0.491874, -0.399623, 0.131263, -
 [node name="Node3D" type="Node3D"]
 
 [node name="detail_desert" parent="." instance=ExtResource("26_o62he")]
+visible = false
 
 [node name="detail_forest" parent="." instance=ExtResource("27_u6cpl")]
+visible = false
 
 [node name="plantA_desert" parent="." instance=ExtResource("53_kwxq8")]
+visible = false
 
 [node name="plantA_forest" parent="." instance=ExtResource("54_41crh")]
+visible = false
 
 [node name="plantB_desert" parent="." instance=ExtResource("55_v63v0")]
+visible = false
 
 [node name="plantB_forest" parent="." instance=ExtResource("56_h78ah")]
+visible = false
 
 [node name="rocksA_desert" parent="." instance=ExtResource("64_8btw7")]
+visible = false
 
 [node name="rocksA_forest" parent="." instance=ExtResource("65_mwt7d")]
+visible = false
 
 [node name="rocksB_desert" parent="." instance=ExtResource("66_j5l11")]
+visible = false
 
 [node name="rocksB_forest" parent="." instance=ExtResource("67_r443a")]
+visible = false
 
 [node name="tileHigh_desert" parent="." instance=ExtResource("87_2ycgn")]
+visible = false
 
 [node name="tileHigh_forest" type="Node3D" parent="."]
+visible = false
 
 [node name="tileHigh_forest" type="MeshInstance3D" parent="tileHigh_forest"]
 mesh = SubResource("ArrayMesh_tny31")
@@ -671,6 +686,7 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_xi71m")
 
 [node name="tileLarge_desert" parent="." instance=ExtResource("92_soch2")]
+visible = false
 
 [node name="tileLarge_forest" type="Node3D" parent="."]
 
@@ -681,11 +697,18 @@ skeleton = NodePath("")
 [node name="StaticBody3D" type="StaticBody3D" parent="tileLarge_forest/tileLarge_forest"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tileLarge_forest/tileLarge_forest/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_csywg")
+shape = SubResource("ConvexPolygonShape3D_sjsvi")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="tileLarge_forest/tileLarge_forest"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tileLarge_forest/tileLarge_forest/StaticBody3D2"]
+shape = SubResource("ConvexPolygonShape3D_vrq63")
 
 [node name="tileLow_desert" parent="." instance=ExtResource("96_lq2y3")]
+visible = false
 
 [node name="tileLow_forest" type="Node3D" parent="."]
+visible = false
 
 [node name="tileLow_forest" type="MeshInstance3D" parent="tileLow_forest"]
 mesh = SubResource("ArrayMesh_08vhb")
@@ -697,8 +720,10 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_4tac6")
 
 [node name="tileMedium_desert" parent="." instance=ExtResource("101_ir4a2")]
+visible = false
 
 [node name="tileMedium_forest" type="Node3D" parent="."]
+visible = false
 
 [node name="tileMedium_forest" type="MeshInstance3D" parent="tileMedium_forest"]
 mesh = SubResource("ArrayMesh_x3e1d")
@@ -710,8 +735,10 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_8s8cn")
 
 [node name="tileSlopeLowHigh_desert" parent="." instance=ExtResource("106_j5hj1")]
+visible = false
 
 [node name="tileSlopeLowHigh_forest" type="Node3D" parent="."]
+visible = false
 
 [node name="tileSlopeLowHigh_forest" type="MeshInstance3D" parent="tileSlopeLowHigh_forest"]
 mesh = SubResource("ArrayMesh_pqyrv")
@@ -723,8 +750,10 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_i0hrj")
 
 [node name="tileSlopeLowMedium_desert" parent="." instance=ExtResource("112_qbf2d")]
+visible = false
 
 [node name="tileSlopeLowMedium_forest" type="Node3D" parent="."]
+visible = false
 
 [node name="tileSlopeLowMedium_forest" type="MeshInstance3D" parent="tileSlopeLowMedium_forest"]
 mesh = SubResource("ArrayMesh_aqs2i")
@@ -736,27 +765,37 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_3bk2g")
 
 [node name="tileSlopeMediumHigh_desert" parent="." instance=ExtResource("116_yuyc1")]
+visible = false
 
 [node name="tileSlopeMediumHigh_forest" type="Node3D" parent="."]
+visible = false
 
 [node name="tileSlopeMediumHigh_forest" type="MeshInstance3D" parent="tileSlopeMediumHigh_forest"]
+visible = false
 mesh = SubResource("ArrayMesh_brsm1")
 skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="tileSlopeMediumHigh_forest/tileSlopeMediumHigh_forest"]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tileSlopeMediumHigh_forest/tileSlopeMediumHigh_forest/StaticBody3D"]
+visible = false
 shape = SubResource("ConvexPolygonShape3D_8ypsi")
 
 [node name="tileSmall_desert" parent="." instance=ExtResource("121_odg7o")]
+visible = false
 
 [node name="tileSmall_forest" type="Node3D" parent="."]
+visible = false
 
 [node name="tileSmall_forest" type="MeshInstance3D" parent="tileSmall_forest"]
+visible = false
 mesh = SubResource("ArrayMesh_xu7kl")
 skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="tileSmall_forest/tileSmall_forest"]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tileSmall_forest/tileSmall_forest/StaticBody3D"]
+visible = false
 shape = SubResource("ConvexPolygonShape3D_v8ytr")

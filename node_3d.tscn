@@ -1,23 +1,14 @@
-[gd_scene load_steps=28 format=3 uid="uid://brb0r8nf03apk"]
+[gd_scene load_steps=14 format=3 uid="uid://brb0r8nf03apk"]
 
-[ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://models/sophia/sophia_skin.tscn" id="1_1ifwf"]
+[ext_resource type="PackedScene" uid="uid://85suchujmgac" path="res://models/mage/mage.tscn" id="1_u8ejv"]
 [ext_resource type="MeshLibrary" uid="uid://c1y856q8vovcy" path="res://terrain/tilemap_nature.tres" id="2_gywnq"]
 [ext_resource type="Script" path="res://xr_camera_3d.gd" id="2_mhvjn"]
 [ext_resource type="Script" path="res://label.gd" id="3_ctyp7"]
 [ext_resource type="Shader" path="res://terrain/water.gdshader" id="3_vrg6d"]
 [ext_resource type="MeshLibrary" uid="uid://c5410rj0f1c5a" path="res://terrain/tilemap.tres" id="4_b7wua"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="5_gb6wc"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="6_ualhd"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="7_ia2qj"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="8_w1amx"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="9_sw47t"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="11_lkihi"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="12_etv02"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="13_gur4n"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="15_1cmcj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xq111"]
-render_priority = 0
+render_priority = -5
 shader = ExtResource("3_vrg6d")
 shader_parameter/WATER_COL = Color(0.229871, 0.605933, 0.999265, 1)
 shader_parameter/WATER2_COL = Color(0.0765771, 0.484602, 0.899532, 1)
@@ -72,51 +63,15 @@ volumetric_fog_emission = Color(0.572243, 0.880196, 0.935879, 1)
 volumetric_fog_detail_spread = 6.0
 volumetric_fog_sky_affect = 0.3
 
-[sub_resource type="Resource" id="Resource_6dkgu"]
-script = ExtResource("8_w1amx")
-amount = 10000
-enabled = true
-override_global_seed = false
-custom_seed = 0
-restrict_height = true
-reference_frame = 1
-
-[sub_resource type="Resource" id="Resource_trimg"]
-script = ExtResource("9_sw47t")
-position = Vector3(0.2, 0, 0.2)
-rotation = Vector3(20, 360, 20)
-scale = Vector3(10, 9, 10)
-enabled = true
-override_global_seed = false
-custom_seed = 0
-restrict_height = false
-reference_frame = 2
-
-[sub_resource type="Resource" id="Resource_16ugd"]
-script = ExtResource("11_lkihi")
-ray_direction = Vector3(0, -1, 0)
-ray_length = 10.0
-ray_offset = 1.0
-remove_points_on_miss = true
-align_with_collision_normal = false
-max_slope = 20.0
-collision_mask = 1
-exclude_mask = 2
-enabled = true
-override_global_seed = false
-custom_seed = 0
-restrict_height = false
-reference_frame = 0
-
-[sub_resource type="Resource" id="Resource_aowc6"]
-script = ExtResource("6_ualhd")
-stack = Array[ExtResource("7_ia2qj")]([SubResource("Resource_6dkgu"), SubResource("Resource_trimg"), SubResource("Resource_16ugd")])
-
-[sub_resource type="Resource" id="Resource_m3uae"]
-script = ExtResource("15_1cmcj")
-size = Vector3(36.0903, 0.794017, 24.9745)
-
 [node name="Node3D" type="Node3D"]
+
+[node name="mage" parent="." instance=ExtResource("1_u8ejv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52081, 2.38356)
+collision_mask = 3
+
+[node name="Camera3D" type="Camera3D" parent="mage"]
+transform = Transform3D(-1, -4.79616e-14, -8.74228e-08, -3.22378e-08, 0.929526, 0.368757, 8.12617e-08, 0.368757, -0.929526, 0, 3.99934, -2.06137)
+script = ExtResource("2_mhvjn")
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("4_b7wua")
@@ -137,15 +92,8 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Whater" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.079813, 0.677008, 0.0551186)
+sorting_offset = -5.0
 mesh = SubResource("PlaneMesh_edxj8")
-
-[node name="Sophia" parent="." instance=ExtResource("1_1ifwf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.30987, 1.52147, 0)
-collision_mask = 3
-
-[node name="Camera3D" type="Camera3D" parent="Sophia"]
-transform = Transform3D(-1, -1.77636e-15, -8.74228e-08, -3.22378e-08, 0.929526, 0.368757, 8.12617e-08, 0.368757, -0.929526, 0, 2.48413, -3.02935)
-script = ExtResource("2_mhvjn")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_i5lbe")
@@ -153,33 +101,29 @@ environment = SubResource("Environment_i5lbe")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 0.708697, 0.705513, 0, -0.705513, 0.708697, -0.713105, 10.5797, 6.94945)
 light_color = Color(0.996493, 0.969161, 0.871526, 1)
-light_energy = 1.2
-light_cull_mask = 4294967291
 shadow_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="aim" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -14.0
+offset_right = 20.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label_FPS" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("3_ctyp7")
-
-[node name="Grass" type="Node3D" parent="."]
-process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.37719, 0.590527, 1.94043)
-script = ExtResource("5_gb6wc")
-modifier_stack = SubResource("Resource_aowc6")
-Performance/use_chunks = true
-Performance/chunk_dimensions = Vector3(15, 15, 15)
-
-[node name="ScatterItem" type="Node3D" parent="Grass"]
-script = ExtResource("12_etv02")
-proportion = 150
-source_scale_multiplier = 0.15
-source_ignore_scale = false
-path = "res://addons/proton_scatter/demos/assets/grass_2.tscn"
-
-[node name="SphereShape" type="Node3D" parent="Grass"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.413355, 1.17095, 0)
-script = ExtResource("13_gur4n")
-shape = SubResource("Resource_m3uae")

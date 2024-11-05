@@ -1,14 +1,55 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlh54blaksoa7"]
+[gd_scene load_steps=15 format=3 uid="uid://dlh54blaksoa7"]
 
 [ext_resource type="Script" path="res://magic_missle.gd" id="1_pbx3a"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing.gd" id="2_xmusj"]
+[ext_resource type="Shader" path="res://fire_missle.gdshader" id="3_8wfuw"]
+[ext_resource type="Texture2D" uid="uid://c3dnnkbnlrq2i" path="res://terrain/magic/HoleNoise.png" id="4_kmpv8"]
+[ext_resource type="Texture2D" uid="uid://ce0lx870qyoid" path="res://terrain/magic/FireMask.png" id="5_q1t36"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_bdd23"]
 radius = 0.1
 height = 0.2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_33rmq"]
-radius = 0.1
+radius = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w2g1p"]
+render_priority = 0
+shader = ExtResource("3_8wfuw")
+shader_parameter/emission_intensity = 2.0
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/edge_softness = 0.1
+shader_parameter/noise_texture = ExtResource("4_kmpv8")
+shader_parameter/texture_mask = ExtResource("5_q1t36")
+
+[sub_resource type="Gradient" id="Gradient_f7fgt"]
+colors = PackedColorArray(0, 0.976471, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p3vqn"]
+gradient = SubResource("Gradient_f7fgt")
+width = 128
+
+[sub_resource type="Curve" id="Curve_btbgp"]
+_data = [Vector2(0, 0), 0.0, 3.653, 0, 0, Vector2(0.557, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b3gy7"]
+curve = SubResource("Curve_btbgp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_voj2r"]
+lifetime_randomness = 0.81
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 4.0
+linear_accel_max = 4.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_b3gy7")
+color_ramp = SubResource("GradientTexture1D_p3vqn")
+
+[sub_resource type="QuadMesh" id="QuadMesh_g004q"]
 
 [node name="MagicMissle" type="CharacterBody3D"]
 collision_layer = 0
@@ -26,5 +67,17 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_33rmq")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.023333, -0.999728, 0, 0.999728, 0.023333, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+material_override = SubResource("ShaderMaterial_w2g1p")
+process_material = SubResource("ParticleProcessMaterial_voj2r")
+draw_pass_1 = SubResource("QuadMesh_g004q")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D"]
+light_color = Color(0.560784, 0.752941, 1, 1)
+light_energy = 2.0
+omni_range = 0.478332
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

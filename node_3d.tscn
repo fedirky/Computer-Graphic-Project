@@ -1,11 +1,39 @@
-[gd_scene load_steps=14 format=3 uid="uid://brb0r8nf03apk"]
+[gd_scene load_steps=36 format=3 uid="uid://brb0r8nf03apk"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_qyds7"]
 [ext_resource type="PackedScene" uid="uid://85suchujmgac" path="res://models/mage/mage.tscn" id="1_u8ejv"]
+[ext_resource type="PackedScene" uid="uid://byurlqs0ploh8" path="res://models/skeleton_minions/Skeleton_Rogue.tscn" id="2_chki0"]
 [ext_resource type="MeshLibrary" uid="uid://c1y856q8vovcy" path="res://terrain/tilemap_nature.tres" id="2_gywnq"]
 [ext_resource type="Script" path="res://xr_camera_3d.gd" id="2_mhvjn"]
 [ext_resource type="Script" path="res://label.gd" id="3_ctyp7"]
 [ext_resource type="Shader" path="res://terrain/water.gdshader" id="3_vrg6d"]
 [ext_resource type="MeshLibrary" uid="uid://c5410rj0f1c5a" path="res://terrain/tilemap.tres" id="4_b7wua"]
+[ext_resource type="PackedScene" uid="uid://dld2i54q2ycie" path="res://models/cute_flower_frog.glb" id="9_c4yvg"]
+[ext_resource type="Shader" path="res://fire_missle.gdshader" id="10_a8fc6"]
+[ext_resource type="Texture2D" uid="uid://c3dnnkbnlrq2i" path="res://terrain/magic/HoleNoise.png" id="11_maj1e"]
+[ext_resource type="Texture2D" uid="uid://ce0lx870qyoid" path="res://terrain/magic/FireMask.png" id="12_w44uk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5r4xm"]
+radius = 1.06901
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iem8o"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 5, 10)
+direction = Vector3(0, -1, 0)
+spread = 5.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w3okd"]
+albedo_color = Color(0, 0.397079, 0.731286, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_frb7h"]
+material = SubResource("StandardMaterial3D_w3okd")
+radius = 0.05
+height = 0.2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xq111"]
 render_priority = -5
@@ -52,6 +80,7 @@ sky_material = SubResource("ProceduralSkyMaterial_xtrsb")
 background_mode = 2
 sky = SubResource("Sky_bfqda")
 reflected_light_source = 2
+fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.231373, 0.607843, 1, 1)
 fog_density = 1.0
@@ -62,19 +91,108 @@ volumetric_fog_emission = Color(0.572243, 0.880196, 0.935879, 1)
 volumetric_fog_detail_spread = 6.0
 volumetric_fog_sky_affect = 0.3
 
+[sub_resource type="Gradient" id="Gradient_jdlju"]
+colors = PackedColorArray(0.792157, 0.129412, 0, 1, 1, 0.481146, 0.0803727, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lkfbw"]
+gradient = SubResource("Gradient_jdlju")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7pxks"]
+lifetime_randomness = 0.4
+emission_shape_scale = Vector3(0.1, 0.1, 0.1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 20.0
+initial_velocity_min = 0.05
+initial_velocity_max = 0.2
+gravity = Vector3(0, 0, 0)
+scale_max = 4.0
+color = Color(1, 0.658824, 0.101961, 1)
+color_ramp = SubResource("GradientTexture1D_lkfbw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eaiwf"]
+blend_mode = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.490196)
+disable_receive_shadows = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_0fcdu"]
+material = SubResource("StandardMaterial3D_eaiwf")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yvdk6"]
+render_priority = 0
+shader = ExtResource("10_a8fc6")
+shader_parameter/emission_intensity = 2.0
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/edge_softness = 0.1
+shader_parameter/noise_texture = ExtResource("11_maj1e")
+shader_parameter/texture_mask = ExtResource("12_w44uk")
+
+[sub_resource type="Gradient" id="Gradient_xekw8"]
+colors = PackedColorArray(0, 0.976471, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p3vqn"]
+gradient = SubResource("Gradient_xekw8")
+width = 128
+
+[sub_resource type="Curve" id="Curve_luu0l"]
+_data = [Vector2(0, 0), 0.0, 3.653, 0, 0, Vector2(0.557, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b3gy7"]
+curve = SubResource("Curve_luu0l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wsxao"]
+lifetime_randomness = 0.81
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 4.0
+linear_accel_max = 4.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_b3gy7")
+color_ramp = SubResource("GradientTexture1D_p3vqn")
+
+[sub_resource type="QuadMesh" id="QuadMesh_4hexb"]
+
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_qyds7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(0.286523, 0, 0.0889075, 0, 0.3, 0, -0.0889075, 0, 0.286523, -1.34418, 1.53405, -0.573333)
+
+[node name="frog" parent="StaticBody3D" instance=ExtResource("9_c4yvg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0829539, 0.737207, 0.123039)
+shape = SubResource("SphereShape3D_5r4xm")
+
+[node name="Skeleton_Rogue" parent="." instance=ExtResource("2_chki0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62377, 5.93945)
+player = NodePath("../mage")
 
 [node name="mage" parent="." instance=ExtResource("1_u8ejv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52081, 2.38356)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63619, 2.38356)
 collision_mask = 3
 
 [node name="Camera3D" type="Camera3D" parent="mage"]
 transform = Transform3D(-1, -4.79616e-14, -8.74228e-08, -3.22378e-08, 0.929526, 0.368757, 8.12617e-08, 0.368757, -0.929526, 0, 3.99934, -2.06137)
 script = ExtResource("2_mhvjn")
 
-[node name="RayCast3D" type="RayCast3D" parent="mage/Camera3D"]
-target_position = Vector3(1, 1, 0)
-collision_mask = 7
+[node name="GPUParticles3D (Rain)" type="GPUParticles3D" parent="mage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.35255, 0)
+cast_shadow = 0
+amount = 32
+trail_lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_iem8o")
+draw_pass_1 = SubResource("SphereMesh_frb7h")
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("4_b7wua")
@@ -130,3 +248,28 @@ vertical_alignment = 1
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("3_ctyp7")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88309, 3.94808, -0.181849)
+cast_shadow = 0
+amount = 10
+lifetime = 3.0
+fixed_fps = 60
+trail_lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_7pxks")
+draw_pass_1 = SubResource("SphereMesh_0fcdu")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D"]
+light_color = Color(0.908019, 0.617113, 0, 1)
+omni_range = 1.9524
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.023333, -0.751371, 0.659468, 0.999728, 0.0175365, -0.0153916, 9.31323e-10, 0.659648, 0.751575, -2.59673, 2.22974, 0.494982)
+material_override = SubResource("ShaderMaterial_yvdk6")
+process_material = SubResource("ParticleProcessMaterial_wsxao")
+draw_pass_1 = SubResource("QuadMesh_4hexb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="GPUParticles3D2"]
+light_color = Color(0.560784, 0.752941, 1, 1)
+light_energy = 2.0
+omni_range = 0.478332

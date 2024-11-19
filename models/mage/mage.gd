@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 @onready var animation_player = $AnimationPlayer  # Animation Player for the player character
-@onready var raycast = $Camera3D/RayCast3D  # Reference to the RayCast3D node
 
 var run_tilt = 0.0: set = _set_run_tilt
 var target_rotation := Transform3D()
@@ -22,7 +21,6 @@ var spellcast_timer = 0.0  # Timer to track the spellcasting duration
 
 func _ready():
     Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-    raycast.enabled = true  # Enable the raycast
 
 func _input(event: InputEvent) -> void:
     if event is InputEventMouseButton:
@@ -32,28 +30,16 @@ func _input(event: InputEvent) -> void:
 func spawn_missile():
     if missile_scene:
         var missile_instance = missile_scene.instantiate()
-        # Встановлюємо початок проміня в позицію камери
-        raycast.global_position = $Camera3D.global_position
-        raycast.target_position = raycast.global_position + (-$Camera3D.global_transform.basis.z.normalized() * 100) # Напрямок камери
-        raycast.force_raycast_update()  # Оновлюємо raycast для отримання актуальних даних
+        missile_instance.position = $Marker3D.global_position  # Позиція запуску снаряда
         
-        var hit_position: Vector3
+        # Отримати позицію та напрямок камери
+        var camera_position = $Camera3D.global_position
+        var camera_direction = -$Camera3D.global_transform.basis.z.normalized()
         
-        if raycast.is_colliding():
-            hit_position = raycast.get_collision_point()  # Отримуємо точку зіткнення
-        else:
-            hit_position = $Camera3D.global_position + (-$Camera3D.global_transform.basis.z.normalized() * 100)  # Точка попереду камери
-
-        # Встановлюємо позицію снаряда на точку зіткнення
-        missile_instance.global_position = $Marker3D.global_position
-            
-        # Задаємо цільову позицію ракети
-        missile_instance.target_position = hit_position
-        get_parent().add_child(missile_instance)  # Додаємо снаряд до сцени
-        
-        # Обчислюємо початкову швидкість ракети
-        missile_instance.velocity = (missile_instance.target_position - missile_instance.global_position).normalized() * missile_instance.speed
-
+        # Передати позицію та напрямок камери снаряду
+        missile_instance.camera_position = camera_position
+        missile_instance.camera_direction = camera_direction
+        get_parent().add_child(missile_instance)
 
 func _physics_process(delta: float) -> void:
     # Jumping logic

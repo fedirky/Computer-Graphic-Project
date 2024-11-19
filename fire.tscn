@@ -1,18 +1,3 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmc42yr552c6w"]
-
-[ext_resource type="Shader" path="res://fire.gdshader" id="1_o2bk2"]
-[ext_resource type="Script" path="res://fire.gd" id="5_fkxtd"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ushr"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("1_o2bk2")
-
-[sub_resource type="QuadMesh" id="QuadMesh_8xjbv"]
-material = SubResource("ShaderMaterial_0ushr")
+[gd_scene format=3 uid="uid://dmc42yr552c6w"]
 
 [node name="Node3D" type="Node3D"]
-
-[node name="fire" type="MeshInstance3D" parent="."]
-mesh = SubResource("QuadMesh_8xjbv")
-script = ExtResource("5_fkxtd")

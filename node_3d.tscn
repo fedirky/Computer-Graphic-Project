@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://brb0r8nf03apk"]
+[gd_scene load_steps=38 format=3 uid="uid://brb0r8nf03apk"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_qyds7"]
 [ext_resource type="PackedScene" uid="uid://85suchujmgac" path="res://models/mage/mage.tscn" id="1_u8ejv"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" path="res://terrain/water.gdshader" id="3_vrg6d"]
 [ext_resource type="MeshLibrary" uid="uid://c5410rj0f1c5a" path="res://terrain/tilemap.tres" id="4_b7wua"]
 [ext_resource type="MeshLibrary" uid="uid://cf52k5yew5qbb" path="res://terrain/tilemap_graveyard.tres" id="8_wcr7x"]
+[ext_resource type="Script" path="res://graveyard.gd" id="9_1yabr"]
 [ext_resource type="PackedScene" uid="uid://dld2i54q2ycie" path="res://models/cute_flower_frog.glb" id="9_c4yvg"]
 [ext_resource type="Shader" path="res://fire_missle.gdshader" id="10_a8fc6"]
 [ext_resource type="Texture2D" uid="uid://c3dnnkbnlrq2i" path="res://terrain/magic/HoleNoise.png" id="11_maj1e"]
@@ -175,7 +176,6 @@ shape = SubResource("SphereShape3D_5r4xm")
 
 [node name="Skeleton_Rogue" parent="." instance=ExtResource("2_chki0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62377, 5.93945)
-player = NodePath("../mage")
 
 [node name="mage" parent="." instance=ExtResource("1_u8ejv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63619, 2.38356)
@@ -187,6 +187,7 @@ script = ExtResource("2_mhvjn")
 
 [node name="GPUParticles3D (Rain)" type="GPUParticles3D" parent="mage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.35255, 0)
+visible = false
 cast_shadow = 0
 amount = 32
 trail_lifetime = 0.2
@@ -202,6 +203,7 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="GridMapTrees" type="GridMap" parent="."]
+visible = false
 mesh_library = ExtResource("2_gywnq")
 cell_size = Vector3(1, 1, 1)
 collision_layer = 2
@@ -216,10 +218,25 @@ cell_size = Vector3(1, 1, 1)
 data = {
 "cells": PackedInt32Array(65560, 11, 12, 65559, 12, 10, 65559, 13, 655375, 65560, 65528, 1441820, 65560, 65530, 1441817, 65558, 65528, 1441827, 65558, 65530, 1441835, 131065, 11, 655410, 131062, 12, 1048579, 131065, 13, 16, 131069, 13, 655374, 131067, 11, 1048610, 65559, 65526, 20, 131104, 2, 1441805)
 }
+script = ExtResource("9_1yabr")
+sceleton = ExtResource("2_chki0")
 metadata/_editor_floor_ = Vector3(0, 2, 0)
+
+[node name="Marker3D" type="Marker3D" parent="GridMapGraveyard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4103, 5, -3)
+
+[node name="Marker3D2" type="Marker3D" parent="GridMapGraveyard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4103, 5, 10)
+
+[node name="Marker3D3" type="Marker3D" parent="GridMapGraveyard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.58969, 5, 10)
+
+[node name="Timer" type="Timer" parent="GridMapGraveyard"]
+autostart = true
 
 [node name="Whater" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.079813, 0.677008, 0.0551186)
+visible = false
 sorting_offset = -5.0
 mesh = SubResource("PlaneMesh_edxj8")
 
@@ -258,6 +275,7 @@ script = ExtResource("3_ctyp7")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88309, 3.94808, -0.181849)
+visible = false
 cast_shadow = 0
 amount = 10
 lifetime = 3.0
@@ -272,6 +290,7 @@ omni_range = 1.9524
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.023333, -0.751371, 0.659468, 0.999728, 0.0175365, -0.0153916, 9.31323e-10, 0.659648, 0.751575, -2.59673, 2.22974, 0.494982)
+visible = false
 material_override = SubResource("ShaderMaterial_yvdk6")
 process_material = SubResource("ParticleProcessMaterial_wsxao")
 draw_pass_1 = SubResource("QuadMesh_4hexb")
@@ -280,3 +299,5 @@ draw_pass_1 = SubResource("QuadMesh_4hexb")
 light_color = Color(0.560784, 0.752941, 1, 1)
 light_energy = 2.0
 omni_range = 0.478332
+
+[connection signal="timeout" from="GridMapGraveyard/Timer" to="GridMapGraveyard" method="_on_timer_timeout"]

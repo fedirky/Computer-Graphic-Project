@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var player: NodePath  # Шлях до гравця, щоб моб міг його знайти
+@export var player: Node3D  # Шлях до гравця, щоб моб міг його знайти
 @onready var animation_player = $AnimationPlayer  # Animation Player for the character
 
 var current_animation: String = ""  # Internal variable to track the current animation
@@ -23,12 +23,11 @@ func _ready():
     set_animation_loop_mode("2H_Melee_Attack_Slice", true)
 
 func _physics_process(delta: float) -> void:
-    var player_node = get_node_or_null(player)
-    if not player_node:
+    if not player:
         return  # Exit if player node is not assigned or doesn't exist
 
     # Обчислити напрямок руху до гравця
-    var target_position = player_node.global_position
+    var target_position = player.global_position
     var distance_to_player = (target_position - global_position).length()
 
     # Якщо моб атакує, пропустити всі інші дії, поки атака не завершена
@@ -78,13 +77,12 @@ func start_attack() -> void:
     play_animation("2H_Melee_Attack_Slice")  # Змінити на назву вашої анімації атаки
     velocity = Vector3.ZERO  # Зупинити моба
     # Поворот моба до гравця протягом усієї атаки
-    var player_node = get_node_or_null(player)
-    if not player_node:
+    if not player:
         return
     var timer = get_tree().create_timer(ATTACK_DURATION)
     while timer.time_left > 0:
         # Отримати напрямок до гравця
-        var target_position = player_node.global_position
+        var target_position = player.global_position
         var attack_direction = (target_position - global_position).normalized()
         attack_direction.y = 0  # Враховувати тільки горизонтальну площину
         

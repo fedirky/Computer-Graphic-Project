@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://brb0r8nf03apk"]
+[gd_scene load_steps=37 format=3 uid="uid://brb0r8nf03apk"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_qyds7"]
 [ext_resource type="PackedScene" uid="uid://85suchujmgac" path="res://models/mage/mage.tscn" id="1_u8ejv"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://label.gd" id="3_ctyp7"]
 [ext_resource type="Shader" path="res://terrain/water.gdshader" id="3_vrg6d"]
 [ext_resource type="MeshLibrary" uid="uid://c5410rj0f1c5a" path="res://terrain/tilemap.tres" id="4_b7wua"]
+[ext_resource type="MeshLibrary" uid="uid://cf52k5yew5qbb" path="res://terrain/tilemap_graveyard.tres" id="8_wcr7x"]
 [ext_resource type="PackedScene" uid="uid://dld2i54q2ycie" path="res://models/cute_flower_frog.glb" id="9_c4yvg"]
 [ext_resource type="Shader" path="res://fire_missle.gdshader" id="10_a8fc6"]
 [ext_resource type="Texture2D" uid="uid://c3dnnkbnlrq2i" path="res://terrain/magic/HoleNoise.png" id="11_maj1e"]
@@ -80,7 +81,6 @@ sky_material = SubResource("ProceduralSkyMaterial_xtrsb")
 background_mode = 2
 sky = SubResource("Sky_bfqda")
 reflected_light_source = 2
-fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.231373, 0.607843, 1, 1)
 fog_density = 1.0
@@ -168,7 +168,6 @@ script = ExtResource("1_qyds7")
 transform = Transform3D(0.286523, 0, 0.0889075, 0, 0.3, 0, -0.0889075, 0, 0.286523, -1.34418, 1.53405, -0.573333)
 
 [node name="frog" parent="StaticBody3D" instance=ExtResource("9_c4yvg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0829539, 0.737207, 0.123039)
@@ -194,15 +193,15 @@ trail_lifetime = 0.2
 process_material = SubResource("ParticleProcessMaterial_iem8o")
 draw_pass_1 = SubResource("SphereMesh_frb7h")
 
-[node name="GridMap" type="GridMap" parent="."]
+[node name="GridMapLandscape" type="GridMap" parent="."]
 mesh_library = ExtResource("4_b7wua")
 cell_size = Vector3(2, 1, 2)
 data = {
-"cells": PackedInt32Array(0, 65535, 236, 65533, 65535, 236, 3, 65535, 236, 1, 2, 236, 65534, 2, 236, 65535, 65532, 15, 2, 65532, 15, 4, 2, 236, 5, 65532, 15, 6, 65535, 236, 0, 5, 236, 3, 5, 236, 7, 2, 236, 6, 5, 236, 8, 65532, 15, 9, 65535, 236, 10, 2, 236, 9, 5, 236, 2, 7, 1048822, 1, 7, 1048822, 0, 7, 1048822, 65535, 7, 1048822, 3, 7, 1048822, 4, 7, 1048822, 8, 7, 1048822, 9, 7, 1048822, 10, 7, 1048822, 7, 6, 1048827, 6, 6, 1048827, 5, 6, 1048827, 65543, 7, 1048822, 65542, 7, 1048822, 65541, 7, 1048822, 11, 65532, 15, 11, 65535, 15, 11, 2, 15, 11, 5, 15, 65532, 65532, 15, 8, 65535, 15, 5, 65535, 15, 2, 65535, 15, 65535, 65535, 15, 65532, 65535, 15, 8, 2, 15, 5, 2, 15, 2, 2, 15, 65535, 2, 15, 65532, 2, 15, 65532, 5, 15, 65535, 5, 15, 2, 5, 15, 5, 5, 15, 8, 5, 15, 13, 5, 655387, 13, 4, 655387, 13, 3, 655387, 13, 2, 655387, 13, 1, 655387, 13, 0, 655387, 13, 65535, 655387, 13, 65534, 655387, 13, 65533, 655387, 13, 65532, 655387, 13, 65531, 655384, 14, 65531, 655372, 65551, 5, 655375, 65551, 2, 655375, 65551, 65535, 655375, 13, 6, 655384)
+"cells": PackedInt32Array(0, 65535, 236, 65533, 65535, 236, 3, 65535, 236, 1, 2, 236, 65534, 2, 236, 65535, 65532, 15, 2, 65532, 15, 4, 2, 236, 5, 65532, 15, 6, 65535, 236, 0, 5, 236, 3, 5, 236, 7, 2, 236, 6, 5, 236, 8, 65532, 15, 9, 65535, 236, 10, 2, 236, 9, 5, 236, 2, 7, 1048822, 1, 7, 1048822, 0, 7, 1048822, 65535, 7, 1048822, 3, 7, 1048822, 4, 7, 1048822, 8, 7, 1048822, 9, 7, 1048822, 10, 7, 1048822, 7, 6, 1048827, 6, 6, 1048827, 5, 6, 1048827, 65543, 7, 1048822, 65542, 7, 1048822, 65541, 7, 1048822, 11, 65532, 15, 11, 65535, 15, 11, 2, 15, 11, 5, 15, 65532, 65532, 15, 8, 65535, 15, 5, 65535, 15, 2, 65535, 15, 65535, 65535, 15, 65532, 65535, 15, 8, 2, 15, 5, 2, 15, 2, 2, 15, 65535, 2, 15, 65532, 2, 15, 65532, 5, 15, 65535, 5, 15, 2, 5, 15, 5, 5, 15, 8, 5, 15, 13, 5, 655387, 13, 4, 655387, 13, 3, 655387, 13, 2, 655387, 13, 1, 655387, 13, 0, 655387, 13, 65535, 655387, 13, 65534, 655387, 13, 65533, 655387, 13, 65531, 655384, 65551, 5, 655375, 65551, 2, 655375, 65551, 65535, 655375, 13, 6, 655384, 65554, 5, 1441807, 65554, 2, 1441807, 65554, 65535, 1441807, 65554, 65532, 1441807, 65551, 65532, 1441807, 13, 65532, 655384)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="GridMap2" type="GridMap" parent="."]
+[node name="GridMapTrees" type="GridMap" parent="."]
 mesh_library = ExtResource("2_gywnq")
 cell_size = Vector3(1, 1, 1)
 collision_layer = 2
@@ -210,6 +209,14 @@ data = {
 "cells": PackedInt32Array(65550, 5, 1441792, 65547, 65529, 1048576, 131068, 65534, 1441792, 65538, 9, 1048577, 65536, 65528, 1441793, 65555, 65535, 655361, 65555, 11, 1048577, 65541, 65529, 1048579, 65552, 65530, 1441795, 65549, 65534, 1048579, 65544, 5, 1441795, 131070, 4, 1048579, 65543, 12, 1441795, 65557, 5, 655363, 131070, 65530, 1048579, 65553, 6, 1441794, 65538, 4, 1048578, 65544, 65532, 1441794, 65549, 10, 1048578, 65536, 11, 1048580, 65542, 65527, 655364, 65553, 65528, 1048580, 131069, 65528, 5, 65546, 9, 1441797, 65556, 3, 1048581, 65551, 65532, 1048582, 65541, 11, 1441798, 65544, 2, 1441799, 65536, 65535, 1441800, 131067, 3, 1441802, 65550, 1, 1441806, 131069, 1, 1441806, 65552, 9, 1048584, 65545, 65534, 13)
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="GridMapGraveyard" type="GridMap" parent="."]
+mesh_library = ExtResource("8_wcr7x")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(65560, 11, 12, 65559, 12, 10, 65559, 13, 655375, 65560, 65528, 1441820, 65560, 65530, 1441817, 65558, 65528, 1441827, 65558, 65530, 1441835, 131065, 11, 655410, 131062, 12, 1048579, 131065, 13, 16, 131069, 13, 655374, 131067, 11, 1048610, 65559, 65526, 20, 131104, 2, 1441805)
+}
+metadata/_editor_floor_ = Vector3(0, 2, 0)
 
 [node name="Whater" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.079813, 0.677008, 0.0551186)

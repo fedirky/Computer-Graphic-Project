@@ -82,6 +82,7 @@ sky_material = SubResource("ProceduralSkyMaterial_xtrsb")
 background_mode = 2
 sky = SubResource("Sky_bfqda")
 reflected_light_source = 2
+fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.231373, 0.607843, 1, 1)
 fog_density = 1.0
@@ -187,7 +188,6 @@ script = ExtResource("2_mhvjn")
 
 [node name="GPUParticles3D (Rain)" type="GPUParticles3D" parent="mage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.35255, 0)
-visible = false
 cast_shadow = 0
 amount = 32
 trail_lifetime = 0.2
@@ -203,7 +203,6 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="GridMapTrees" type="GridMap" parent="."]
-visible = false
 mesh_library = ExtResource("2_gywnq")
 cell_size = Vector3(1, 1, 1)
 collision_layer = 2
@@ -232,11 +231,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4103, 5, 10)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.58969, 5, 10)
 
 [node name="Timer" type="Timer" parent="GridMapGraveyard"]
-autostart = true
+wait_time = 4.0
 
 [node name="Whater" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.079813, 0.677008, 0.0551186)
-visible = false
 sorting_offset = -5.0
 mesh = SubResource("PlaneMesh_edxj8")
 
@@ -275,7 +273,6 @@ script = ExtResource("3_ctyp7")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88309, 3.94808, -0.181849)
-visible = false
 cast_shadow = 0
 amount = 10
 lifetime = 3.0
@@ -290,7 +287,6 @@ omni_range = 1.9524
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.023333, -0.751371, 0.659468, 0.999728, 0.0175365, -0.0153916, 9.31323e-10, 0.659648, 0.751575, -2.59673, 2.22974, 0.494982)
-visible = false
 material_override = SubResource("ShaderMaterial_yvdk6")
 process_material = SubResource("ParticleProcessMaterial_wsxao")
 draw_pass_1 = SubResource("QuadMesh_4hexb")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://brb0r8nf03apk"]
+[gd_scene load_steps=39 format=3 uid="uid://brb0r8nf03apk"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_qyds7"]
 [ext_resource type="PackedScene" uid="uid://85suchujmgac" path="res://models/mage/mage.tscn" id="1_u8ejv"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://label.gd" id="3_ctyp7"]
 [ext_resource type="Shader" path="res://terrain/water.gdshader" id="3_vrg6d"]
 [ext_resource type="MeshLibrary" uid="uid://c5410rj0f1c5a" path="res://terrain/tilemap.tres" id="4_b7wua"]
+[ext_resource type="PackedScene" uid="uid://dlh54blaksoa7" path="res://magic_missle.tscn" id="5_yfj8g"]
 [ext_resource type="MeshLibrary" uid="uid://cf52k5yew5qbb" path="res://terrain/tilemap_graveyard.tres" id="8_wcr7x"]
 [ext_resource type="Script" path="res://graveyard.gd" id="9_1yabr"]
 [ext_resource type="PackedScene" uid="uid://dld2i54q2ycie" path="res://models/cute_flower_frog.glb" id="9_c4yvg"]
@@ -181,6 +182,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62377, 5.93945)
 [node name="mage" parent="." instance=ExtResource("1_u8ejv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63619, 2.38356)
 collision_mask = 3
+missile_scene = ExtResource("5_yfj8g")
 
 [node name="Camera3D" type="Camera3D" parent="mage"]
 transform = Transform3D(-1, -4.79616e-14, -8.74228e-08, -3.22378e-08, 0.929526, 0.368757, 8.12617e-08, 0.368757, -0.929526, 0, 3.99934, -2.06137)
@@ -188,6 +190,7 @@ script = ExtResource("2_mhvjn")
 
 [node name="GPUParticles3D (Rain)" type="GPUParticles3D" parent="mage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.35255, 0)
+visible = false
 cast_shadow = 0
 amount = 32
 trail_lifetime = 0.2
@@ -243,6 +246,7 @@ environment = SubResource("Environment_i5lbe")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 0.708697, 0.705513, 0, -0.705513, 0.708697, -0.713105, 10.5797, 6.94945)
+visible = false
 light_color = Color(0.996493, 0.969161, 0.871526, 1)
 shadow_enabled = true
 
@@ -273,6 +277,7 @@ script = ExtResource("3_ctyp7")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88309, 3.94808, -0.181849)
+visible = false
 cast_shadow = 0
 amount = 10
 lifetime = 3.0
@@ -287,6 +292,7 @@ omni_range = 1.9524
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
 transform = Transform3D(0.023333, -0.751371, 0.659468, 0.999728, 0.0175365, -0.0153916, 9.31323e-10, 0.659648, 0.751575, -2.59673, 2.22974, 0.494982)
+visible = false
 material_override = SubResource("ShaderMaterial_yvdk6")
 process_material = SubResource("ParticleProcessMaterial_wsxao")
 draw_pass_1 = SubResource("QuadMesh_4hexb")

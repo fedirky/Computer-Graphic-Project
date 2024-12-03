@@ -129,6 +129,10 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/prot
 
 import/blender/enabled=false
 
+[global_group]
+
+enemies=""
+
 [input]
 
 move_up={

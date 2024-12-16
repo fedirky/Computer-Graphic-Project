@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends     CharacterBody3D
 
 @export var player: Node3D  # Шлях до гравця, щоб моб міг його знайти
 @onready var animation_player = $AnimationPlayer  # Animation Player for the character
@@ -30,8 +30,12 @@ func _physics_process(delta: float) -> void:
     # Перевірити чи hp моба <= 0
     if hp <= 0:
         play_animation("Death_A")
+        
+        get_parent().check_raid_status()
+        
+        # Очікування завершення анімації перед видаленням
         await get_tree().create_timer(0.8).timeout
-        queue_free()  # Видалити моб після анімації смерті
+        queue_free()  # Видалити моба після анімації смерті
         return
 
     # Обчислити напрямок руху до гравця
@@ -109,7 +113,7 @@ func start_attack() -> void:
     var distance_to_player = (player.global_position - global_position).length()
     if distance_to_player <= ATTACK_DISTANCE:
         # Видалити гравця зі сцени
-        player.reduce_hp(1)
+        player.change_hp(-1)
     is_attacking = false  # Завершити атаку
 
 

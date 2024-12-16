@@ -86,13 +86,15 @@ directories/dch_directory={
 "MrFrog": "res://dialogues/MrFrog.dch"
 }
 directories/dtl_directory={
+"dialogueBeforeWave2": "res://dialogues/dialogueBeforeWave2.dtl",
 "testTimeline": "res://dialogues/testTimeline.dtl"
 }
 glossary/default_case_sensitive=true
-layout/style_list=[""]
+layout/style_list=[]
 layout/default_style=""
 variables={
-"raidStart": false
+"raidStart": false,
+"skeletonWave": 8
 }
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01

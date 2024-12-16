@@ -1,0 +1,9 @@
+MrFrog: WOW, That was so croakool!
+MrFrog: But be carafull! They will return soon.
+MrFrog: Here, My magic will heal you.
+# Somehow I need to add hp healing function here.
+[signal arg="heal_player"]
+MrFrog: Now it should be better!
+MrFrog: Oh, nooo. They are coming again!! Be careful!
+set {skeletonWave} = 10
+set {raidStart} = true

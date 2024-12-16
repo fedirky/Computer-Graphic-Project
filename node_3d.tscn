@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://brb0r8nf03apk"]
+[gd_scene load_steps=44 format=3 uid="uid://brb0r8nf03apk"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_qyds7"]
 [ext_resource type="PackedScene" uid="uid://85suchujmgac" path="res://models/mage/mage.tscn" id="1_u8ejv"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://b6lq63pbd3dde" path="res://interface/player_health_bar_green_shape.png" id="13_0pg05"]
 [ext_resource type="Script" path="res://player_health_bar.gd" id="14_ww6rn"]
 [ext_resource type="Texture2D" uid="uid://grgv0ufa30h5" path="res://interface/player_health_bar_base.png" id="17_qclb2"]
+[ext_resource type="Script" path="res://restart_button.gd" id="18_mcqk4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5r4xm"]
 radius = 1.06901
@@ -266,8 +267,18 @@ texture_under = ExtResource("17_qclb2")
 texture_progress = ExtResource("13_0pg05")
 script = ExtResource("14_ww6rn")
 
-[node name="Crosshair" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(1280, 721)
+[node name="Crosshair" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("12_c1e0m")
 
 [node name="Label_FPS" type="Label" parent="CanvasLayer"]
@@ -276,6 +287,40 @@ offset_top = 4.0
 offset_right = 2533.0
 offset_bottom = 27.0
 script = ExtResource("3_ctyp7")
+
+[node name="GameOver" type="Label" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -450.0
+offset_right = 450.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 128
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/GameOver"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -124.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Restart Level"
+script = ExtResource("18_mcqk4")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88309, 3.94808, -0.181849)
@@ -305,3 +350,4 @@ light_energy = 2.0
 omni_range = 0.478332
 
 [connection signal="timeout" from="GridMapGraveyard/Timer" to="GridMapGraveyard" method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/GameOver/RestartButton" to="CanvasLayer/GameOver/RestartButton" method="_on_pressed"]

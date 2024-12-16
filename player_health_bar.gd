@@ -12,3 +12,7 @@ func _process(delta: float) -> void:
 
 func set_player_hp(hp: int):
     value = hp
+    if value == 0:
+        $"../GameOver".show()
+        get_tree().paused = true
+        Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) 

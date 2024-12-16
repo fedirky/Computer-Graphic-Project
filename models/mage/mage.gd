@@ -19,6 +19,8 @@ const MISSILE_SPAWN_DELAY = 0.85   # Delay before spawning missile after spellca
 var is_casting_spell = false  # Flag to indicate if the spell is currently being cast
 var spellcast_timer = 0.0  # Timer to track the spellcasting duration
 
+var hp = 4
+
 func _ready():
     Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -124,3 +126,7 @@ func _play_animation(anim_name: String) -> void:
     if current_animation != anim_name:
         animation_player.play(anim_name, BLEND_TIME)  # Use blend time for smooth transition
         current_animation = anim_name  # Update the internal variable with the new animation name
+        
+func reduce_hp(amount: int) -> void:
+    hp -= amount
+    $"../CanvasLayer/PlayerHealthBar".set_player_hp(hp)

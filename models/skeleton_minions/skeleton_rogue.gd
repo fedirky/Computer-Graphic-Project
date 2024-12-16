@@ -10,21 +10,29 @@ var SPEED = 4.0
 const LERP_AFK_SPEED = 50.0
 const JUMP_VELOCITY = 4.5 * 2
 const BLEND_TIME = 0.2  # Desired blend time between animations
-const ATTACK_DISTANCE = 0.7  # Distance to trigger the attack
+const ATTACK_DISTANCE = 1.5  # Distance to trigger the attack
 const ATTACK_DURATION = 1.1  # Time in seconds for the attack animation
+var hp = 2
 
 var direction: Vector3 = Vector3.ZERO  # Direction the character is moving
 
 func _ready():
-    print(1)
     animation_player.play("Idle")
     set_animation_loop_mode("Idle", true)  # Example of setting loop mode for an animation
     set_animation_loop_mode("Running_B", true)  # Ensure "Run" animation is loopable
     set_animation_loop_mode("2H_Melee_Attack_Slice", true)
+    set_animation_loop_mode("Death_A", true)
 
 func _physics_process(delta: float) -> void:
     if not player:
         return  # Exit if player node is not assigned or doesn't exist
+
+    # Перевірити чи hp моба <= 0
+    if hp <= 0:
+        play_animation("Death_A")
+        await get_tree().create_timer(0.8).timeout
+        queue_free()  # Видалити моб після анімації смерті
+        return
 
     # Обчислити напрямок руху до гравця
     var target_position = player.global_position
@@ -72,28 +80,42 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 
 # Function to start an attack
+# Function to start an attack
 func start_attack() -> void:
     is_attacking = true
     play_animation("2H_Melee_Attack_Slice")  # Змінити на назву вашої анімації атаки
     velocity = Vector3.ZERO  # Зупинити моба
-    # Поворот моба до гравця протягом усієї атаки
+
     if not player:
+        is_attacking = false
         return
+
     var timer = get_tree().create_timer(ATTACK_DURATION)
+
     while timer.time_left > 0:
         # Отримати напрямок до гравця
         var target_position = player.global_position
         var attack_direction = (target_position - global_position).normalized()
         attack_direction.y = 0  # Враховувати тільки горизонтальну площину
-        
+
         # Плавний поворот до гравця
         var local_target_rotation = atan2(attack_direction.x, attack_direction.z)
         var current_rotation = rotation.y
         rotation.y = lerp_angle(current_rotation, local_target_rotation, 0.2)
-        
+
         await get_tree().process_frame  # Очікування наступного кадру
+
+    # Перевірити, чи гравець все ще в межах ATTACK_DISTANCE
+    var distance_to_player = (player.global_position - global_position).length()
+    if distance_to_player <= ATTACK_DISTANCE:
+        # Видалити гравця зі сцени
+        player.reduce_hp(1)
     is_attacking = false  # Завершити атаку
 
+
+# Function to reduce hp and handle death
+func reduce_hp(amount: int) -> void:
+    hp -= amount
 
 # Function to set the loop mode of an animation
 func set_animation_loop_mode(anim_name: String, loop: bool) -> void:

@@ -36,5 +36,6 @@ func _process(delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
     if body.is_in_group("enemies"):
-        body.queue_free()  # Знищуємо ворога при зіткненні
-        queue_free()  # Знищуємо ракету
+        body.reduce_hp(1)  # Викликаємо метод зменшення hp на 1
+        
+    queue_free()  # Знищуємо ракету

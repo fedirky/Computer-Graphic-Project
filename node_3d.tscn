@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://brb0r8nf03apk"]
+[gd_scene load_steps=43 format=3 uid="uid://brb0r8nf03apk"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_qyds7"]
 [ext_resource type="PackedScene" uid="uid://85suchujmgac" path="res://models/mage/mage.tscn" id="1_u8ejv"]
@@ -14,7 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://dld2i54q2ycie" path="res://models/cute_flower_frog.glb" id="9_c4yvg"]
 [ext_resource type="Shader" path="res://fire_missle.gdshader" id="10_a8fc6"]
 [ext_resource type="Texture2D" uid="uid://c3dnnkbnlrq2i" path="res://terrain/magic/HoleNoise.png" id="11_maj1e"]
+[ext_resource type="Texture2D" uid="uid://b74muddeqnb1d" path="res://interface/crosshair.png" id="12_c1e0m"]
 [ext_resource type="Texture2D" uid="uid://ce0lx870qyoid" path="res://terrain/magic/FireMask.png" id="12_w44uk"]
+[ext_resource type="Texture2D" uid="uid://b6lq63pbd3dde" path="res://interface/player_health_bar_green_shape.png" id="13_0pg05"]
+[ext_resource type="Script" path="res://player_health_bar.gd" id="14_ww6rn"]
+[ext_resource type="Texture2D" uid="uid://grgv0ufa30h5" path="res://interface/player_health_bar_base.png" id="17_qclb2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5r4xm"]
 radius = 1.06901
@@ -176,9 +180,6 @@ transform = Transform3D(0.286523, 0, 0.0889075, 0, 0.3, 0, -0.0889075, 0, 0.2865
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0829539, 0.737207, 0.123039)
 shape = SubResource("SphereShape3D_5r4xm")
 
-[node name="Skeleton_Rogue" parent="." instance=ExtResource("2_chki0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62377, 5.93945)
-
 [node name="mage" parent="." instance=ExtResource("1_u8ejv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63619, 2.38356)
 collision_mask = 3
@@ -252,27 +253,28 @@ shadow_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="aim" type="Label" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -14.0
-offset_right = 20.0
-offset_bottom = 14.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 20
-text = "+"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="CanvasLayer"]
+texture_filter = 1
+offset_left = 18.0
+offset_top = 16.0
+offset_right = 126.0
+offset_bottom = 26.0
+scale = Vector2(6, 6)
+max_value = 4.0
+value = 4.0
+texture_under = ExtResource("17_qclb2")
+texture_progress = ExtResource("13_0pg05")
+script = ExtResource("14_ww6rn")
+
+[node name="Crosshair" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1280, 721)
+texture = ExtResource("12_c1e0m")
 
 [node name="Label_FPS" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 2493.0
+offset_top = 4.0
+offset_right = 2533.0
+offset_bottom = 27.0
 script = ExtResource("3_ctyp7")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]

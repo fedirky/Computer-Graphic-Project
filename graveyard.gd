@@ -12,7 +12,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-    print(Dialogic.VAR.raidStart)
     if Dialogic.VAR.raidStart == true:
         $Timer.start()
         Dialogic.VAR.raidStart = false
